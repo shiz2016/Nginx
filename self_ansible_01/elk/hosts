@@ -1,0 +1,13 @@
+::1	localhost	localhost.localdomain	localhost6	localhost6.localdomain6
+
+127.0.0.1	localhost	localhost.localdomain	localhost4	localhost4.localdomain4
+127.0.0.1	localhost	localhost
+127.0.0.1	ecs-jump-server	ecs-jump-server
+192.168.1.201 ecs-elk-e-0001
+192.168.1.202 ecs-elk-e-0002
+192.168.1.203 ecs-elk-e-0003
+192.168.1.204 ecs-elk-e-0004
+192.168.1.205 ecs-elk-e-0005
+192.168.1.206 ecs-elk-e-0006
+192.168.1.207 ecs-elk-e-0007
+192.168.1.208 ecs-elk-e-0008

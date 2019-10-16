@@ -1,0 +1,23 @@
+---
+- hosts: nginx-web
+  remote_user: root
+  tasks:
+    - name: install the latest version of Nginx
+      yum:
+        name: nginx
+        state: latest
+      notify: restart nginx
+    - copy:
+        src: nginx.conf 
+        dest: /usr/local/nginx/conf/nginx.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+        enabled: yes

@@ -1,0 +1,26 @@
+---
+all:
+  hosts:
+    cache:
+  children:
+    nginx-web: #五台
+      hosts:
+        192.168.1.[51:55]
+    tom-web: #两台
+      hosts:
+        192.168.1.[56:57]
+    web-LB: #两台
+      hosts:
+        192.168.1.[31:32] 
+    ELK-L: #两台
+      hosts:
+        192.168.1.[201:202]
+    ELK-E: #五台
+      hosts:
+        192.168.1.[203:207] 
+    ELK-K: #一台
+      hosts:
+        192.168.1.208
+    mysql:
+      hosts:
+        192.168.1.[171:177]

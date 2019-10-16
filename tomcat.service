@@ -1,0 +1,12 @@
+[Unit]
+Description=Tomcat
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/tomcat/bin/catalina.sh start
+ExecReload=/usr/local/tomcat/bin/catalina.sh restart
+ExecStop=/bin/kill -s QUIT ${MAINPID}
+
+[Install]
+WantedBy=multi-user.target

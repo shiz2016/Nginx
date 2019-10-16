@@ -1,0 +1,23 @@
+---
+- hosts: tom-web
+  remote_user: root
+  tasks:
+    - name: install the latest version of Tomcat
+      yum:
+        name: tomcat,java-1.8.0-openjdk,java-1.8.0-openjdk-headless
+        state: latest
+      notify: restart tomcat
+#    - copy:
+#        src: nginx.conf 
+#        dest: /usr/local/nginx/conf/nginx.conf
+#        owner: root
+#        group: root
+#        mode: 0644
+#      notify: restart nginx
+
+  handlers:
+    - name: restart tomcat
+      service:
+        name: tomcat
+        state: restarted
+        enabled: yes

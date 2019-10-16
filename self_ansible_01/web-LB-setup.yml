@@ -1,0 +1,56 @@
+---
+- hosts: web-LB
+  remote_user: root
+  tasks:
+    - name: install the latest version of Nginx
+      yum:
+        name: nginx
+        state: latest
+      notify: restart nginx
+    - name: install the latest version of keepalived
+      yum:
+        name: keepalived
+        state: latest
+      notify: restart keepalived
+    - copy:
+        src: /root/self_ansible_01/web-LB/nginx.conf
+        dest: /usr/local/nginx/conf/nginx.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify: restart nginx
+###############################################################
+#拷贝不同的配置文件
+- hosts: 192.168.1.31
+  remote_user: root
+  tasks:
+    - copy:
+        src: /root/self_ansible_01/web-LB/keepalived.conf
+        dest: /etc/keepalived/keepalived.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify: restart keepalived
+
+- hosts: 192.168.1.32
+  remote_user: root
+  tasks:
+    - copy:
+        src: /root/self_ansible_01/web-LB/keepalived2.conf
+        dest: /etc/keepalived/keepalived.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify: restart keepalived
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+        enabled: yes
+    - name: restart keepalived
+      service:
+        name: keepalived
+        state: restarted
+        enabled: yes
